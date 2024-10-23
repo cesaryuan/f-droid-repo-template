@@ -26,6 +26,9 @@ if [ -f "$COMMIT_MSG_FILE" ]; then
     git commit -F "$COMMIT_MSG_FILE"
     git push -f -u origin update_fdroid_apps
 
+    echo "Creating label..."
+    gh label create "automated pr" --description "Automatically created by GitHub Actions"
+
     echo "Creating PR..."
     PR_URL=$(gh pr create --title "$PR_TITLE" \
         --base main \
