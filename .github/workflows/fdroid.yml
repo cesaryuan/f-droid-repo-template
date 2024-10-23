@@ -73,7 +73,7 @@ jobs:
           echo "keystorepass: '$FDROID_STORE_KEYSTORE_PASSWORD'" >> fdroid/config.yml
           # Get repo user and replace [username] with the actual username
           repo_user=$(echo "${{ github.repository }}" | cut -d'/' -f1)
-          sed -i "s/\[username\]/$repo_user/g" fdroid/config.yml
+          sed -i "s/\[GithubUsername\]/$repo_user/g" fdroid/config.yml
 
       - run: |
           sudo add-apt-repository ppa:fdroid/fdroidserver
