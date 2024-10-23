@@ -552,7 +552,7 @@ func main() {
 		log.Fatalf("cannot find fingerprint url in index.html")
 	}
 
-	repoURL := string(matches[0][9 : len(matches[0])-1])
+	repoURL := string(matches[0][8 : len(matches[0])-1])
 
 	err = md.RegenerateReadme(readmePath, fdroidIndex, repoURL)
 	if err != nil {
