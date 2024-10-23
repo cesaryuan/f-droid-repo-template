@@ -71,8 +71,8 @@ jobs:
           chmod 0600 fdroid/config.yml
           echo "keypass: '$FDROID_STORE_KEYSTORE_PASSWORD'" >> fdroid/config.yml
           echo "keystorepass: '$FDROID_STORE_KEYSTORE_PASSWORD'" >> fdroid/config.yml
-          # Get repo user and replace [username] with the actual username
-          repo="${{ github.repository }}"
+          # Get repo and replace [GithubRepo] with the actual repo
+          repo=$(echo "${{ github.repository }}" | sed 's/\//\\\//g')
           sed -i "s/\[GithubRepo\]/$repo/g" fdroid/config.yml
 
       - run: |
