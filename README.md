@@ -10,7 +10,7 @@
 
 URL:
 ```
-https://raw.githubusercontent.com/username/f-droid/main/fdroid/repo?fingerprint=XXX
+ttps://raw.githubusercontent.com/[username]/f-droid/main/fdroid/repo?fingerprint=4F966AF134F6ABCE6CD01E876D50F5464747E5CC25ED1603B24823498F763275
 ```
 
 ## Apps
@@ -18,6 +18,8 @@ https://raw.githubusercontent.com/username/f-droid/main/fdroid/repo?fingerprint=
 <!-- This table is auto-generated. Do not edit -->
 | Icon | Name | Description | Version |
 | --- | --- | --- | --- |
+| <a href=""><img src="fdroid/repo/com.x8bit.bitwarden/en-US/icon.png" alt="Bitwarden icon" width="36px" height="36px"></a> | [**Bitwarden**]() | No summary available | 2024.9.0 (19209) |
+| <a href=""><img src="fdroid/repo/com.x8bit.bitwarden.beta/en-US/icon.png" alt="Bitwarden Beta icon" width="36px" height="36px"></a> | [**Bitwarden Beta**]() | No summary available | 2024.9.0 (19209) |
 <!-- end apps table -->
 
 ## Instructions
