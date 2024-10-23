@@ -357,10 +357,9 @@ func main() {
 					summary := repo.Summary
 					// See https://f-droid.org/en/docs/Build_Metadata_Reference/#Summary for max length
 					const maxSummaryLength = 80
-					if len(summary) > maxSummaryLength {
-						summary = summary[:maxSummaryLength-3] + "..."
-
-						log.Printf("Truncated summary to length of %d (max length)", len(summary))
+					if len([]rune(summary)) > maxSummaryLength {
+						summary = string([]rune(summary)[:maxSummaryLength-3]) + "..."
+						log.Printf("Truncated summary to length of %d runes (max length)", len([]rune(summary)))
 					}
 					setNonEmpty(meta, "Summary", summary)
 					break // Found the repo, no need to continue
