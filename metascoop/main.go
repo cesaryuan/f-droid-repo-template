@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
@@ -53,6 +54,37 @@ func main() {
 	githubClient := github.NewClient(authenticatedClient)
 
 	fdroidIndexFilePath := filepath.Join(*repoDir, "index-v1.json")
+
+	// if the index file doesn't exist, we create it with the default values
+	if _, err := os.Stat(fdroidIndexFilePath); os.IsNotExist(err) {
+		defaultIndex := apps.RepoIndex{
+			Repo: map[string]interface{}{
+				"timestamp":   time.Now().UnixMilli(),
+				"version":     20002,
+				"name":        "My First F-Droid Repo Demo",
+				"icon":        "icon.png",
+				"address":     "",
+				"description": "This is a repository of apps to be used with F-Droid. Applications in this repository are either official binaries built by the original application developers, or are binaries built from source by the admin of f-droid.org using the tools on https://gitlab.com/fdroid.",
+			},
+			Requests: map[string]interface{}{
+				"install":   []string{},
+				"uninstall": []string{},
+			},
+			Apps:     []map[string]interface{}{},
+			Packages: make(map[string][]apps.PackageInfo),
+		}
+
+		f, err := os.OpenFile(fdroidIndexFilePath, os.O_CREATE|os.O_WRONLY, 0o644)
+		if err != nil {
+			log.Fatalf("creating default f-droid repo index file: %s\n", err.Error())
+		}
+		defer f.Close()
+
+		err = json.NewEncoder(f).Encode(defaultIndex)
+		if err != nil {
+			log.Fatalf("writing default f-droid repo index: %s\n", err.Error())
+		}
+	}
 
 	initialFdroidIndex, err := apps.ReadIndex(fdroidIndexFilePath)
 	if err != nil {
