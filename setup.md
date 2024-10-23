@@ -25,7 +25,7 @@ When building/releasing a new version of your app, you need to make sure that yo
 
 3. Then run `fdroid init` in the `fdroid` subdirectory:
 
-        cd fdroid && fdroid init
+        cd fdroid && fdroid init --repo-keyalias KEYALIAS
 
     This creates two files: `fdroid/config.yml` and `fdroid/keystore.p12`. The first one is the configuration file for your repository, the second one is a keystore file (these are used for signing apps when building, but this tool doesn't build apps).
 
