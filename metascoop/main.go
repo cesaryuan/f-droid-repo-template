@@ -75,6 +75,10 @@ func main() {
 			Packages: make(map[string][]apps.PackageInfo),
 		}
 
+		err := os.MkdirAll(filepath.Dir(fdroidIndexFilePath), 0755)
+		if err != nil {
+			log.Fatalf("creating directory for f-droid repo index file: %s\n", err.Error())
+		}
 		f, err := os.OpenFile(fdroidIndexFilePath, os.O_CREATE|os.O_WRONLY, 0o644)
 		if err != nil {
 			log.Fatalf("creating default f-droid repo index file: %s\n", err.Error())
