@@ -42,15 +42,16 @@ When building/releasing a new version of your app, you need to make sure that yo
     ```
 
 4. Open your GitHub repository, go to Settings and then to Secrets. We will create a few "Repository secrets" now (do not mix them up with the "Environment secrets", we don't want those!)
+5. Go to the `Settings` tab, then to `Actions`, then to `General`. Set `Workflow permissions` to `Read and write permissions`.
 
-5. Run the following command:
+6. Run the following command:
 
         base64 keystore.p12 > out.txt
 
     And now create secret with the name `KEYSTORE_P12`, and again paste the content of `out.txt`.
 
-6. Then open [this page](https://github.com/settings/tokens/new?description=f-droid%20repo) and generate a new GitHub personal access token without any scopes. Set the expiration date to "No expiration" (or really any timeframe on how often you want to manually update this secret). Copy the token and set it as the `GH_ACCESS_TOKEN` repository secret.
-7. Find the generated `keystorepass` in `fdroid/config.yml` and set it to `FDROID_STORE_KEYSTORE_PASSWORD` repository secret.
+7. Then open [this page](https://github.com/settings/tokens/new?description=f-droid%20repo) and generate a new GitHub personal access token without any scopes. Set the expiration date to "No expiration" (or really any timeframe on how often you want to manually update this secret). Copy the token and set it as the `GH_ACCESS_TOKEN` repository secret.
+8. Find the generated `keystorepass` in `fdroid/config.yml` and set it to `FDROID_STORE_KEYSTORE_PASSWORD` repository secret.
 
 That should be it. You can now also generate a new QR code for your repo using online tools, then replace the file in `.github/qrcode.png`. And of course, you should now add your apps!
 
