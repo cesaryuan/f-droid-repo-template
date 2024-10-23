@@ -18,10 +18,9 @@ on:
       - 'repos.yaml'
       - '.github/workflows/fdroid.yml'
 
-  pull_request:
-    paths:
-      - 'repos.yaml'
-
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   apps:
