@@ -9,12 +9,12 @@
     "icon": {
       "en-US": {
         "name": "/icons/icon.png",
-        "sha256": "3c4676efdfb02940324260f9ccd8d864ac7a87b1d26304e4f6eeafff05ec0a33",
-        "size": 949
+        "sha256": "4b3c99d4b8d1d13e2178c9b20aefeed4ecc62d3951afc4607f1c076e9756768c",
+        "size": 979
       }
     },
-    "address": "https://raw.githubusercontent.com/cesaryuan/f-droid/main/fdroid/archive",
-    "timestamp": 1729696796000
+    "address": "https://raw.githubusercontent.com/cesaryuan/f-droid-repo-template/main/fdroid/archive",
+    "timestamp": 1729697686000
   },
   "packages": {}
 }
