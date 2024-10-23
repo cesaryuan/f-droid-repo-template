@@ -9,21 +9,21 @@
     "icon": {
       "en-US": {
         "name": "/icons/icon.png",
-        "sha256": "bea9ce8bc84feb6263f802ba8439b84da3fd33f61e0d85312389c4092046cfd9",
-        "size": 1000
+        "sha256": "3c4676efdfb02940324260f9ccd8d864ac7a87b1d26304e4f6eeafff05ec0a33",
+        "size": 949
       }
     },
-    "address": "https://raw.githubusercontent.com/[username]/f-droid/main/fdroid/repo",
-    "timestamp": 1729696053000
+    "address": "https://raw.githubusercontent.com/cesaryuan/f-droid/main/fdroid/repo",
+    "timestamp": 1729696799000
   },
   "packages": {
     "com.x8bit.bitwarden": {
       "metadata": {
-        "added": 1729696043000,
+        "added": 1729696789000,
         "categories": [
           "Security"
         ],
-        "lastUpdated": 1729696043000,
+        "lastUpdated": 1729696789000,
         "name": {
           "en-US": "Bitwarden"
         },
@@ -34,7 +34,7 @@
       },
       "versions": {
         "73a340a8ae975146fdbbec805ec29ee083290522627e82a56bd1126ff9a1a2d6": {
-          "added": 1729696043000,
+          "added": 1729696789000,
           "file": {
             "name": "/bitwarden_v2024.9.0.apk",
             "sha256": "73a340a8ae975146fdbbec805ec29ee083290522627e82a56bd1126ff9a1a2d6",
@@ -102,11 +102,11 @@
     },
     "com.x8bit.bitwarden.beta": {
       "metadata": {
-        "added": 1729696041000,
+        "added": 1729696787000,
         "categories": [
           "Security"
         ],
-        "lastUpdated": 1729696041000,
+        "lastUpdated": 1729696787000,
         "name": {
           "en-US": "Bitwarden Beta"
         },
@@ -117,7 +117,7 @@
       },
       "versions": {
         "b361d84fddec1cd4a8c9a8b33a897578564f8ecd46e87e2e57dc44e73050809c": {
-          "added": 1729696041000,
+          "added": 1729696787000,
           "file": {
             "name": "/bitwarden-beta_v2024.9.0.apk",
             "sha256": "b361d84fddec1cd4a8c9a8b33a897578564f8ecd46e87e2e57dc44e73050809c",
