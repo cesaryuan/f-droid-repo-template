@@ -10,6 +10,6 @@ repo_description: >-
 #   This is a repository of archived apps that are no longer
 #   officially supported.
 archive_older: 3
-repo_keyalias: '[KEYALIAS]'
-keydname: 'CN=[KEYALIAS], OU=F-Droid'
+repo_keyalias: 'KEYALIAS'
+keydname: 'CN=KEYALIAS, OU=F-Droid'
 # email: android@lsposed.org
