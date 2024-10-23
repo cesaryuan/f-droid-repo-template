@@ -13,6 +13,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"sync"
 	"time"
@@ -526,7 +527,23 @@ func main() {
 
 	// We can now generate the README file
 	readmePath := filepath.Join(filepath.Dir(filepath.Dir(*repoDir)), "README.md")
-	err = md.RegenerateReadme(readmePath, fdroidIndex)
+
+	// Extract fingerprint from the repoDir/index.html file
+	// <a href="https://*?fingerprint=*">
+	html, err := os.ReadFile(filepath.Join(*repoDir, "index.html"))
+	if err != nil {
+		log.Fatalf("reading index.html: %s\n::endgroup::\n", err.Error())
+	}
+
+	re := regexp.MustCompile(`a href="https://.*?\?fingerprint=.*?"`)
+	matches := re.FindSubmatch(html)
+	if len(matches) == 0 {
+		log.Fatalf("cannot find fingerprint url in index.html")
+	}
+
+	repoURL := string(matches[0][9 : len(matches[0])-1])
+
+	err = md.RegenerateReadme(readmePath, fdroidIndex, repoURL)
 	if err != nil {
 		log.Fatalf("error generating %q: %s\n", readmePath, err.Error())
 	}

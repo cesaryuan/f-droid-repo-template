@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"html/template"
 	"os"
+	"regexp"
+	"strings"
 
 	"metascoop/apps"
 )
@@ -17,13 +19,15 @@ const (
 	tableTmpl = `
 | Icon | Name | Description | Version |
 | --- | --- | --- | --- |{{range .Apps}}
-| <a href="{{.sourceCode}}"><img src="fdroid/repo/{{.packageName}}/en-US/icon.png" alt="{{.name}} icon" width="36px" height="36px"></a> | [**{{.name}}**]({{.sourceCode}}) | {{.summary}} | {{.suggestedVersionName}} ({{.suggestedVersionCode}}) |{{end}}
+| <a href="{{.sourceCode}}"><img src="fdroid/repo/{{.packageName}}/en-US/icon.png" alt="{{.name}} icon" width="36px" height="36px"></a> | [**{{.name}}**]({{.sourceCode}}) | {{if .summary}}{{replace .summary "\n" "<br>"}}{{else}}No summary available{{end}} | {{.suggestedVersionName}} ({{.suggestedVersionCode}}) |{{end}}
 ` + tableEnd
 )
 
-var tmpl = template.Must(template.New("").Parse(tableTmpl))
+var tmpl = template.Must(template.New("").Funcs(template.FuncMap{
+	"replace": strings.ReplaceAll,
+}).Parse(tableTmpl))
 
-func RegenerateReadme(readMePath string, index *apps.RepoIndex) (err error) {
+func RegenerateReadme(readMePath string, index *apps.RepoIndex, repoURL string) (err error) {
 	content, err := os.ReadFile(readMePath)
 	if err != nil {
 		return
@@ -53,6 +57,11 @@ func RegenerateReadme(readMePath string, index *apps.RepoIndex) (err error) {
 	newContent = append(newContent, content[:tableStartIndex]...)
 	newContent = append(newContent, table.Bytes()...)
 	newContent = append(newContent, content[tableEndIndex:]...)
+
+	// Replace the repo URL in the new content
+	// https://[\w\.\/\-]+\?fingerprint=[\w]+
+	re := regexp.MustCompile(`https://[\w\.\/\-]+\?fingerprint=[\w]+`)
+	newContent = re.ReplaceAll(newContent, []byte(repoURL))
 
 	return os.WriteFile(readMePath, newContent, os.ModePerm)
 }
