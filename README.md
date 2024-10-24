@@ -1,6 +1,6 @@
 <p align="center">
-    <!-- <a href="ttps://raw.githubusercontent.com/username/f-droid/main/fdroid/repo?fingerprint=XXX">
-        <img src="fdroid/btn.png" alt="F-Droid repo url button" width="323" height="125"/>
+    <!-- <a href="https://raw.githubusercontent.com/username/f-droid/main/fdroid/repo?fingerprint=XXX">
+        <img src="assets/btn.png" alt="F-Droid repo url button" width="323" height="125"/>
     </a> -->
     <br>
     <a href="https://raw.githubusercontent.com/cesaryuan/f-droid-repo-template/main/fdroid/repo?fingerprint=4F966AF134F6ABCE6CD01E876D50F5464747E5CC25ED1603B24823498F763275">
