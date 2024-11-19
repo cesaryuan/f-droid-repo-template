@@ -23,7 +23,7 @@ When building/releasing a new version of your app, you need to make sure that yo
 
     We only need these tools once to set up the repository. After these steps you can delete them, as now GitHub Actions will manage everything.
 
-3. Then run `fdroid init` in the `fdroid` subdirectory:
+3. Then run `fdroid init` in the `fdroid` subdirectory (create the directory if it doesn't exist):
 
         cd fdroid && fdroid init --repo-keyalias KEYALIAS
 
@@ -41,17 +41,13 @@ When building/releasing a new version of your app, you need to make sure that yo
     archive_older: 0
     ```
 
-4. Open your GitHub repository, go to Settings and then to Secrets. We will create a few "Repository secrets" now (do not mix them up with the "Environment secrets", we don't want those!)
-5. Go to the `Settings` tab, then to `Actions`, then to `General`. Set `Workflow permissions` to `Read and write permissions`.
+4. Go to the `Settings` tab, then to `Actions`, then to `General`. Set `Workflow permissions` to `Read and write permissions`.
 
-6. Run the following command:
+5. Open your GitHub repository, go to Settings and then to Secrets. We will create a few "Repository secrets" now (do not mix them up with the "Environment secrets", we don't want those!)
 
-        base64 keystore.p12 > out.txt
-
-    And now create secret with the name `KEYSTORE_P12`, and again paste the content of `out.txt`.
-
-7. Then open [this page](https://github.com/settings/tokens/new?description=f-droid%20repo&scopes=repo) and generate a new GitHub personal access token with the `repo` scope pre-selected. Set the expiration date to "No expiration" (or really any timeframe on how often you want to manually update this secret). Copy the token and set it as the `GH_ACCESS_TOKEN` repository secret.
-8. Find the generated `keystorepass` in `fdroid/config.yml` and set it to `FDROID_STORE_KEYSTORE_PASSWORD` repository secret.
+    - `KEYSTORE_P12`: The base64 encoded content of `keystore.p12`. Try `base64 keystore.p12 > out.txt`.
+    - `GH_ACCESS_TOKEN`: A GitHub personal access token with the `repo` scope. [Get one here](https://github.com/settings/tokens/new?description=f-droid%20repo&scopes=repo) with the `repo` scope pre-selected.
+    - `FDROID_STORE_KEYSTORE_PASSWORD`: The password for the keystore. Find the generated `keystorepass` in `fdroid/config.yml`.
 
 That should be it. You can now also generate a new QR code for your repo using online tools, then replace the file in `.github/qrcode.png`. And of course, you should now add your apps!
 
@@ -62,6 +58,8 @@ Now you can edit the `apps.yaml` file to include a new app. Usually you just nee
 android:
   git: "https://github.com/bitwarden/android"
   author_name: "bitwarden" # If not set, the owner of the repo will be used
+  summary: |
+    Bitwarden is the easiest and safest way to store all of your logins and passwords while conveniently keeping them synced between all of your devices.
   applications:
     - filename: "com.x8bit.bitwarden-fdroid.apk"
       id: "com.x8bit.bitwarden" # Recommended to be the package name of the app
