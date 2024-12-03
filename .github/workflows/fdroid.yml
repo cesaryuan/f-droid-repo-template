@@ -83,6 +83,11 @@ jobs:
           packages: fdroidserver
           version: "@latest"
 
+      - name: Fix androidguard
+        run: |
+          sudo sed -i 's|raise ResParserError("res0 must be zero!")|log.warning("res0 must be zero!")|g' /usr/lib/python3/dist-packages/androguard/core/bytecodes/axml/__init__.py
+          sudo sed -i 's|raise ResParserError("res1 must be zero!")|log.warning("res1 must be zero!")|g' /usr/lib/python3/dist-packages/androguard/core/bytecodes/axml/__init__.py
+
       - name: Set up Go
         uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # v5.0.2
         with:
